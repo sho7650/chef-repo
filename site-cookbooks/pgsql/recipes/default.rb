@@ -6,7 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe postgresql
 
 package "postgresql-9.1" do
   action :install
@@ -32,46 +31,18 @@ service "postgresql" do
 end
 
 # create a user with an MD5-encrypted password
-pg_user "zabbix" do
-  privileges superuser: false, createdb: false, login: true
-  encrypted_password "5fce1b3e34b520afeffb37ce08c7cd66"
-end
+# pg_user "zabbix" do
+#   privileges superuser: false, createdb: false, login: true
+#   encrypted_password "5fce1b3e34b520afeffb37ce08c7cd66"
+# end
 
 # create a database
-pg_database "zabbix" do
-  owner "zabbix"
-  encoding "utf8"
+# pg_database "zabbix" do
+#   owner "zabbix"
+#   encoding "utf8"
 #   template "template0"
-  locale "ja_JP.UTF8"
-end
-
-
-template "postgresql.conf" do
-  path "/etc/postgresql/9.1/main/postgresql.conf"
-  source "postgresql.conf.erb"
-  owner "postgres"
-  group "postgres"
-  mode 0644
-  notifies :reload, 'service[postgresql]'
-end
-
-template "pg_hba.conf" do
-  path "/etc/postgresql/9.1/main/pg_hba.conf"
-  source "pg_hba.conf.erb"
-  owner "postgres"
-  group "postgres"
-  mode 0644
-  notifies :reload, 'service[postgresql]'
-end
-
-template "pg_ident.conf" do
-  path "/etc/postgresql/9.1/main/pg_ident.conf"
-  source "pg_ident.conf.erb"
-  owner "postgres"
-  group "postgres"
-  mode 0644
-  notifies :reload, 'service[postgresql]'
-end
+#   locale "ja_JP.UTF8"
+# end
 
 # SHMMAX in bytes
 def shmmax
@@ -96,6 +67,9 @@ node.override["postgresql"]["effective_cache_size"]            = ((node['memory'
  
 node.override["postgresql"]["shmall"] = shmall
 node.override["postgresql"]["shmmax"] = shmmax
+
+log "max_connections = #{node["postgresql"]["max_connections"]}"
+log "shared_buffers = #{node["postgresql"]["shared_buffers"]}"
  
 bash "add shm settings" do
   user "root"
@@ -106,3 +80,31 @@ bash "add shm settings" do
   EOF
   not_if "egrep '^kernel.shmmax = ' /etc/sysctl.conf"
 end
+
+template "postgresql.conf" do
+  path "/etc/postgresql/9.1/main/postgresql.conf"
+  source "postgresql.conf.erb"
+  owner "postgres"
+  group "postgres"
+  mode 0644
+  notifies :restart, 'service[postgresql]'
+end
+
+template "pg_hba.conf" do
+  path "/etc/postgresql/9.1/main/pg_hba.conf"
+  source "pg_hba.conf.erb"
+  owner "postgres"
+  group "postgres"
+  mode 0644
+  notifies :restart, 'service[postgresql]'
+end
+
+template "pg_ident.conf" do
+  path "/etc/postgresql/9.1/main/pg_ident.conf"
+  source "pg_ident.conf.erb"
+  owner "postgres"
+  group "postgres"
+  mode 0644
+  notifies :restart, 'service[postgresql]'
+end
+
