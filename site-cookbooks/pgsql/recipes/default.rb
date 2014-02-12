@@ -6,24 +6,25 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+# include_recipe "database::postgresql"
 
 package "postgresql-9.1" do
   action :install
 end
 
-user "zabbix" do
-  uid 1011
-  home "/home/zabbix"
-  shell "/bin/bash"
-  password nil
-  supports :manage_home => true
-end
+# user "zabbix" do
+#   uid 1011
+#   home "/home/zabbix"
+#   shell "/bin/bash"
+#   password nil
+#   supports :manage_home => true
+# end
 
-group "zabbix" do
-  gid 1011
-  members ['zabbix']
-  action :create
-end
+# group "zabbix" do
+#   gid 1011
+#   members ['zabbix']
+#   action :create
+# end
 
 service "postgresql" do
   action [ :enable, :start ]
