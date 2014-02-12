@@ -87,7 +87,7 @@ template "postgresql.conf" do
   owner "postgres"
   group "postgres"
   mode 0644
-  notifies :restart, 'service[postgresql]'
+  notifies :reload, 'service[postgresql]'
 end
 
 template "pg_hba.conf" do
@@ -96,7 +96,7 @@ template "pg_hba.conf" do
   owner "postgres"
   group "postgres"
   mode 0644
-  notifies :restart, 'service[postgresql]'
+  notifies :reload, 'service[postgresql]'
 end
 
 template "pg_ident.conf" do
@@ -105,6 +105,6 @@ template "pg_ident.conf" do
   owner "postgres"
   group "postgres"
   mode 0644
-  notifies :restart, 'service[postgresql]'
+  notifies :reload, 'service[postgresql]'
 end
 
