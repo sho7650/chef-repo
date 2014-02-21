@@ -88,7 +88,7 @@ template "postgresql.conf" do
   owner "postgres"
   group "postgres"
   mode 0644
-  notifies :reload, 'service[postgresql]'
+  notifies :restart, 'service[postgresql]'
 end
 
 template "pg_hba.conf" do

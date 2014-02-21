@@ -437,6 +437,7 @@ log_line_prefix = '%t '			# special values:
 #------------------------------------------------------------------------------
 
 #autovacuum = on			# Enable autovacuum subprocess?  'on'
+autovacuum = on			# Enable autovacuum subprocess?  'on'
 					# requires track_counts to also be on.
 #log_autovacuum_min_duration = -1	# -1 disables, 0 logs all actions and
 					# their durations, > 0 logs only
@@ -485,7 +486,8 @@ log_line_prefix = '%t '			# special values:
 
 # - Locale and Formatting -
 
-datestyle = 'iso, mdy'
+#datestyle = 'iso, mdy'
+datestyle = 'iso, ymd'
 #intervalstyle = 'postgres'
 #timezone = '(defaults to server environment setting)'
 #timezone_abbreviations = 'Default'     # Select the set of available time zone
@@ -502,12 +504,13 @@ datestyle = 'iso, mdy'
 # These settings are initialized by initdb, but they can be changed.
 lc_messages = 'en_US.UTF-8'			# locale for system error message
 					# strings
-lc_monetary = 'en_US.UTF-8'			# locale for monetary formatting
-lc_numeric = 'en_US.UTF-8'			# locale for number formatting
-lc_time = 'en_US.UTF-8'				# locale for time formatting
+lc_monetary = 'ja_JP.UTF-8'			# locale for monetary formatting
+lc_numeric = 'ja_JP.UTF-8'			# locale for number formatting
+lc_time = 'ja_JP.UTF-8'				# locale for time formatting
 
 # default configuration for text search
-default_text_search_config = 'pg_catalog.english'
+# default_text_search_config = 'pg_catalog.english'
+default_text_search_config = 'pg_catalog.simple'
 
 # - Other Defaults -
 
