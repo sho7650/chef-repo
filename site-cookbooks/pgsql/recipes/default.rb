@@ -82,6 +82,12 @@ bash "add shm settings" do
   not_if "egrep '^kernel.shmmax = ' /etc/sysctl.conf"
 end
 
+execute "pgsql-chpasswd" do
+  command "su - postgres -c '/usr/bin/psql -U postgres < /tmp/pg_chpasswd.sql'"
+  action  :nothing
+  notifies :restart, 'service[zabbix-server]'
+end
+
 template "postgresql.conf" do
   path "/etc/postgresql/9.1/main/postgresql.conf"
   source "postgresql.conf.erb"
@@ -108,4 +114,21 @@ template "pg_ident.conf" do
   mode 0644
   notifies :reload, 'service[postgresql]'
 end
+
+template "pg_chpasswd.sql" do
+  path "/tmp/pg_chpasswd.sql"
+  source "pg_chpasswd.sql.erb"
+  user  "postgres"
+  group "postgres"
+  mode  0600
+  variables ({
+    :pg_user => node[:postgresql][:user],
+    :pg_password => node[:postgresql][:password]
+ })
+
+  notifies :run, 'execute[pgsql-chpasswd]', :immediately
+end
+
+
+
 
