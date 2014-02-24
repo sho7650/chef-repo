@@ -6,4 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "pgsql::client"
+package "postgresql-client-9.1" do
+  action :install
+end

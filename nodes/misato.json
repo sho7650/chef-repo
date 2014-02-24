@@ -1,0 +1,9 @@
+{
+	"postgresql": {
+		"checkpoint_segments" : 32
+	},
+
+	"run_list":[
+		"recipe[pgsql]"
+	]
+}

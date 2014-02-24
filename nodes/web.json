@@ -1,0 +1,33 @@
+{
+    "zabbix": {
+	"database": {
+	    "type"     : "POSTGRESQL",
+	    "server"   : "192.168.100.20",
+	    "port"     : "0",
+	    "name"     : "zabbix",
+	    "user"     : "zabbix",
+	    "password" : "q1xLOUJqqbiH"
+	    },
+
+	"server" : "192.168.100.20",
+	"port"   : "10051",
+	"name"   : "ZABBIX"
+    },
+
+    "php_value": {
+        "max_execution_time"  : "300",
+	"memory_limit"        : "128M",
+	"post_max_size"       : "16M",
+	"upload_max_filesize" : "2M",
+	"max_input_time"      : "300",
+	"date.timezone"       : "Asia/Tokyo"
+    },
+    
+    "run_list":[
+	"recipe[base]",
+	"recipe[base::ntpd]",
+	"recipe[apache]",
+	"recipe[apache::php5]",
+	"recipe[zabbix::frontend]"
+    ]
+}
