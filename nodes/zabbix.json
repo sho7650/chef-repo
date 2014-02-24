@@ -3,7 +3,7 @@
 	"checkpoint_segments" : "32",
 	"trust_network"       : "192.168.100.0/24",
 	"user"                : "zabbix",
-	"password"            : "md58cb7231ef15eae8cda992d8ec6d9bf27"
+	"password"            : "q1xLOUJqqbiH"
     },
     
     "run_list":[
