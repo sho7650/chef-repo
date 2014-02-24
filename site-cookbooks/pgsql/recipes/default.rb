@@ -103,6 +103,10 @@ template "pg_hba.conf" do
   owner "postgres"
   group "postgres"
   mode 0644
+  variables ({
+    :trust_network => node[:postgresql][:trust_network]
+  })
+
   notifies :reload, 'service[postgresql]'
 end
 
