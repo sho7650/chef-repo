@@ -107,12 +107,12 @@ template "pg_hba.conf" do
   source "pg_hba.conf.erb"
   owner "postgres"
   group "postgres"
-  mode 0644
+  mode 0664
   variables ({
     :trust_network => node[:postgresql][:trust_network]
   })
 
-  notifies :reload, 'service[postgresql]'
+  notifies :restart, 'service[postgresql]'
 end
 
 template "pg_ident.conf" do
@@ -135,5 +135,5 @@ template "pg_chpasswd.sql" do
     :pg_password => node[:postgresql][:password]
  })
 
-  notifies :run, 'execute[pgsql-chpasswd]', :immediately
+  notifies :run, 'execute[pgsql-chpasswd]'
 end

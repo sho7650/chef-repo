@@ -80,7 +80,7 @@ PidFile=/var/run/zabbix/zabbix_server.pid
 # Default:
 # DBHost=localhost
 
-DBHost=localhost
+DBHost=<%= @dbhost %>
 
 ### Option: DBName
 #	Database name.
@@ -90,7 +90,7 @@ DBHost=localhost
 # Default:
 # DBName=
 
-DBName=zabbix
+DBName=<%= @database %>
 
 ### Option: DBSchema
 #	Schema name. Used for IBM DB2.
@@ -106,7 +106,7 @@ DBName=zabbix
 # Default:
 # DBUser=
 
-DBUser=zabbix
+DBUser=<%= @dbuser %>
 
 ### Option: DBPassword
 #	Database password. Ignored for SQLite.
@@ -116,7 +116,7 @@ DBUser=zabbix
 # Default:
 # DBPassword=
 
-DBPassword=q1xLOUJqqbiH
+DBPassword=<%= @dbpasswd %>
 
 ### Option: DBSocket
 #	Path to MySQL socket.
