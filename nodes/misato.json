@@ -4,6 +4,7 @@
 	},
 
 	"run_list":[
-		"recipe[pgsql]"
+	    "recipe[base]",
+	    "recipe[pgsql]"
 	]
 }

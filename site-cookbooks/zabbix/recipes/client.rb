@@ -16,9 +16,13 @@ service "zabbix-agent" do
 end
 
 template "zabbix_agentd.conf" do
-	path "/etc/zabbix/zabbix_agentd.conf"
-	user "root"
-	group "root"
-	mode 0644
-	notifies :restart, 'service[zabbix-agent]'
+  path "/etc/zabbix/zabbix_agentd.conf"
+  user "root"
+  group "root"
+  mode 0644
+  variables ({
+               :hostname => node[:hostname],
+               :server   => node[:zabbix][:server]
+             })
+  notifies :restart, 'service[zabbix-agent]'
 end
