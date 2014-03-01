@@ -6,14 +6,12 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-execute "apt-get update" do
-        action :nothing
-end
+include_recipe "apt"
 
 dpkg_package "zabbix-release" do
         source "#{Chef::Config[:file_cache_path]}/zabbix-release_2.2-1+wheezy_all.deb"
         action :nothing
-        notifies :run, 'execute[apt-get update]', :immediately
+        notifies :run, 'execute[apt-get-update]', :immediately
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/zabbix-release_2.2-1+wheezy_all.deb" do

@@ -125,7 +125,7 @@ template "pg_ident.conf" do
 end
 
 template "pg_chpasswd.sql" do
-  path "/tmp/pg_chpasswd.sql"
+  path "#{Chef::Config[:file_cache_path]}/pg_chpasswd.sql"
   source "pg_chpasswd.sql.erb"
   user  "postgres"
   group "postgres"
