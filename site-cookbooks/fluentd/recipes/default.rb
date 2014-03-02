@@ -31,4 +31,9 @@ template "limits.conf" do
              })
 end
 
+execute "adding-gpg-td" do
+  command "curl http://packages.treasure-data.com/debian/RPM-GPG-KEY-td-agent | apt-key add -"
+  not_if "apt-key list | egrep -q 'Treasure Data'"
+end
+
 include_recipe "fluentd::client"
