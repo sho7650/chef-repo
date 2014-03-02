@@ -7,7 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-
 bash "nw_setting" do
   user "root"
   code <<-EOF
@@ -56,5 +55,3 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{node[:fluentd][:libssl_file]}" 
         notifies :install, 'dpkg_package[libssl0.9.8]', :immediately
 end
 
-
-include_recipe "fluentd::server"

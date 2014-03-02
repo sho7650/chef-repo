@@ -6,6 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "fluentd"
+
 package "td-agent" do
   action :install
 end
