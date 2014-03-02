@@ -2,7 +2,7 @@
 # Cookbook Name:: fluentd
 # Recipe:: default
 #
-# Copyright 2014, YOUR_COMPANY_NAME
+# Copyright 2014, oshiire
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -32,8 +32,29 @@ template "limits.conf" do
 end
 
 execute "adding-gpg-td" do
-  command "curl http://packages.treasure-data.com/debian/RPM-GPG-KEY-td-agent | apt-key add -"
+  command "curl -L http://packages.treasure-data.com/debian/RPM-GPG-KEY-td-agent | apt-key add -"
   not_if "apt-key list | egrep -q 'Treasure Data'"
 end
 
-include_recipe "fluentd::client"
+template "treasure-data.list" do
+  path "/etc/apt/sources.list.d/treasure-data.list"
+  owner "root"
+  group "root"
+  mode  0644
+  notifies :run, 'execute[apt-get-update]', :immediately
+end
+
+dpkg_package "libssl0.9.8" do
+        source "#{Chef::Config[:file_cache_path]}/#{node[:fluentd][:libssl_file]}"
+        action :nothing
+end
+
+remote_file "#{Chef::Config[:file_cache_path]}/#{node[:fluentd][:libssl_file]}" do
+        source node[:fluentd][:libssl_url]
+        not_if "dpkg -l | egrep -q 'libssl0.9.8'"
+        mode 0644
+        notifies :install, 'dpkg_package[libssl0.9.8]', :immediately
+end
+
+
+include_recipe "fluentd::server"
