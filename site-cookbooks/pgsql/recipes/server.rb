@@ -79,7 +79,7 @@ bash "add shm settings" do
 end
 
 execute "pgsql-chpasswd" do
-  command "su - postgres -c '/usr/bin/psql -U postgres < /tmp/pg_chpasswd.sql'"
+  command "su - postgres -c '/usr/bin/psql -U postgres < #{Chef::Config[:file_cache_path]}/pg_chpasswd.sql'"
   action  :nothing
   notifies :restart, 'service[zabbix-server]'
 end
