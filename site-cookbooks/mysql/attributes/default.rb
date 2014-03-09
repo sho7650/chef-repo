@@ -15,6 +15,7 @@ default['mysql']['datadir']            = "/home/mysql"
 default['mysql']['character_set']      = "utf8"
 default['mysql']['storage_engine']     = "InnoDB"
 
+default['mysql']['max_connections']           = "31"
 default['mysql']['innodb_buffer_pool_size']   = "512MB"
 default['mysql']['innodb_log_file_size']      = "256MB"
 default['mysql']['innodb_log_files_in_group'] = "2"

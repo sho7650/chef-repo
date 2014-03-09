@@ -40,6 +40,7 @@ template "my.cnf" do
                :character_set           => node[:mysql][:character_set],
                :storage_engine          => node[:mysql][:storage_engine],
                :datadir                 => node[:mysql][:datadir],
+               :max_connections         => node[:mysql][:max_connections],
                :table_open_cache        => node[:mysql][:table_open_cache],
                :innodb_buffer_pool_size => node[:mysql][:innodb_buffer_pool_size],
                :innodb_log_file_size    => node[:mysql][:innodb_log_file_size]
