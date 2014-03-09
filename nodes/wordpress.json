@@ -1,7 +1,18 @@
 {
+    "php_value": {
+        "max_execution_time"  : "300",
+	"memory_limit"        : "128M",
+	"post_max_size"       : "16M",
+	"upload_max_filesize" : "2M",
+	"max_input_time"      : "300",
+	"date.timezone"       : "Asia/Tokyo"
+    },
+
     "run_list":[
 	"recipe[base]",
 	"recipe[fluentd::client]",
+	"recipe[apache]",
+	"recipe[apache::php5]",
 	"recipe[zabbix]"
     ]
 }
