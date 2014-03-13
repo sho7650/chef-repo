@@ -113,13 +113,13 @@ max_binlog_size         = 100M
 # Read the manual for more InnoDB related options. There are many!
 #
 
-innodb_data_file_path   = ibdata1:1G
+innodb_data_file_path   = ibdata1:<%= @innodb_data_file_size %>
 innodb_file_per_table
 
 innodb_buffer_pool_size = <%= @innodb_buffer_pool_size %>
 innodb_log_file_size    = <%= @innodb_log_file_size %>
 
-innodb_file_format      = Barracuda
+innodb_file_format      = <%= @innodb_file_format %>
 
 #
 # * Security Features

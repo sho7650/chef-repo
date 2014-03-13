@@ -19,5 +19,7 @@ default['mysql']['max_connections']           = "31"
 default['mysql']['innodb_buffer_pool_size']   = "512MB"
 default['mysql']['innodb_log_file_size']      = "256MB"
 default['mysql']['innodb_log_files_in_group'] = "2"
+default['mysql']['innodb_data_file_size']     = "1G"
+default['mysql']['innodb_file_format']        = "Barracuda"
 
 default['mysql']['table_open_cache']          = "1024"

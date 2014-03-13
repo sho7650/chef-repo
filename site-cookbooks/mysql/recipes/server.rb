@@ -43,7 +43,9 @@ template "my.cnf" do
                :max_connections         => node[:mysql][:max_connections],
                :table_open_cache        => node[:mysql][:table_open_cache],
                :innodb_buffer_pool_size => node[:mysql][:innodb_buffer_pool_size],
-               :innodb_log_file_size    => node[:mysql][:innodb_log_file_size]
+               :innodb_log_file_size    => node[:mysql][:innodb_log_file_size],
+               :innodb_data_file_size   => node[:mysql][:innodb_data_file_size],
+               :innodb_file_format      => node[:mysql][:innodb_file_format]
              })
   notifies :restart, 'service[mysql]', :immediately
 end 

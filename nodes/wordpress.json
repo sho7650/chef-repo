@@ -11,8 +11,8 @@
     "run_list":[
 	"recipe[base]",
 	"recipe[fluentd::client]",
-	"recipe[apache]",
-	"recipe[apache::php5]",
+	"recipe[nginx]",
+	"recipe[nginx::php5]",
 	"recipe[zabbix]"
     ]
 }
