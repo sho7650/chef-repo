@@ -27,6 +27,7 @@
 	"recipe[base]",
 	"recipe[apache]",
 	"recipe[apache::php5]",
+	"recipe[fluentd]",
 	"recipe[zabbix::frontend]"
     ]
 }
