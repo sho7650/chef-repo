@@ -8,11 +8,17 @@
 	"date.timezone"       : "Asia/Tokyo"
     },
 
+    "ssl_value": {
+	"server_crt_file"     : "owncloud.crt",
+	"private_key_file"    : "oshiire.key"
+    },
+
     "run_list":[
 	"recipe[base]",
 	"recipe[fluentd::client]",
 	"recipe[apache]",
 	"recipe[apache::php5]",
+	"recipe[apache::ssl]",
 	"recipe[owncloud::server]",
 	"recipe[zabbix]"
     ]
