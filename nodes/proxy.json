@@ -1,0 +1,8 @@
+{
+    "run_list":[
+	"recipe[base]",
+	"recipe[nginx]",
+	"recipe[nginx::forward-proxy]",
+	"recipe[nginx::reverse-proxy]"
+    ]
+}

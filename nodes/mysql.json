@@ -1,6 +1,7 @@
 {
     "run_list":[
 	"recipe[base]",
+	"recipe[iscsi]",
 	"recipe[mysql::server]",
 	"recipe[zabbix]"
     ]
