@@ -1,8 +1,12 @@
+<% for proxy in @proxy_list %>
+
 server {
-	listen <%= @listen_port %>;
-	server_name <%= @server_name %>;
+ 	listen <%= proxy["listen_port"] %>;
+	server_name <%= proxy["server_name"] %>;
 
 	location / {
-		proxy_pass <%= @proxy_url %>;
+		proxy_pass <%= proxy["proxy_url"] %>;
 	}
 }
+
+<% end %>

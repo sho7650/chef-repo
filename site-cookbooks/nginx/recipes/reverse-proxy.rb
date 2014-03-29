@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+servers = data_bag_item('proxylist','production')['servers']
 
 template "reverse_proxy.conf" do
   path "/etc/nginx/conf.d/reverse_proxy.conf"
@@ -13,9 +14,7 @@ template "reverse_proxy.conf" do
   group "root"
   mode  0644
   variables ({
-               :listen_port => node[:nginx][:reverse][:listen_port],
-               :server_name => node[:nginx][:reverse][:server_name],
-               :proxy_url   => node[:nginx][:reverse][:proxy_url]
+               :proxy_list => servers
              })
   notifies :reload, 'service[nginx]'
 end

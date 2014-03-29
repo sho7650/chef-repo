@@ -12,7 +12,7 @@ execute "update-grub" do
 end
 
 execute "rewrite-grub" do
-  command 'sed -i s%^GRUB_CMDLINE_LINUX=\"%GRUB_CMDLINE_LINUX=\"ipv6.disable=1% /etc/default/grub'
+  command 'sed -i s%^GRUB_CMDLINE_LINUX=\"%GRUB_CMDLINE_LINUX=\"ipv6.disable=1\ % /etc/default/grub'
   action :run
   not_if "egrep -q 'ipv6.disable=1' /etc/default/grub"
   notifies :run, 'execute[update-grub]'
