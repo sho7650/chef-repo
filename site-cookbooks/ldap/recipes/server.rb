@@ -27,3 +27,37 @@ service "slapd" do
   action [ :enable, :start ]
   supports :status => true, :restart => true
 end
+
+%w{olcDbIndex olcAccess}.each do |file|
+  execute "ldapmodify-#{file}" do
+    command "ldapmodify -Y EXTERNAL -H ldapi:/// -f #{Chef::Config[:file_cache_path]}/#{file}.ldif"
+    action :nothing
+  end
+
+  template file+".ldif" do
+    path  "#{Chef::Config[:file_cache_path]}/#{file}.ldif"
+    owner "root"
+    group "root"
+    mode  0640
+
+    notifies :run, "execute[ldapmodify-#{file}]"
+  end
+end
+
+%w{initOU}.each do |file|
+  execute "ldapadd-#{file}" do
+    command "ldapadd -f #{Chef::Config[:file_cache_path]}/#{file}.ldif -x -D cn=admin,dc=oshiire,dc=to -w p@ssw0rd"
+    action :nothing
+  end
+
+  template file+".ldif" do
+    path  "#{Chef::Config[:file_cache_path]}/#{file}.ldif"
+    owner "root"
+    group "root"
+    mode  0640
+
+    notifies :run, "execute[ldapadd-#{file}]"
+  end
+end
+
+

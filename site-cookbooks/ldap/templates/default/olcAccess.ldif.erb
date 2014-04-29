@@ -1,0 +1,18 @@
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: {0}to attrs=userPassword,shadowLastChange
+  by dn="cn=proxy,dc=oshiire,dc=to" none
+  by self write
+  by dn="cn=admin,dc=oshiire,dc=to" write
+  by anonymous auth
+  by * none
+olcAccess: {1}to attrs=loginShell,gecos
+  by dn="cn=proxy,dc=oshiire,dc=to" write
+  by self write
+  by * read
+olcAccess: {2}to * by dn="cn=proxy,dc=oshiire,dc=to" read
+  by self write
+  by dn="cn=admin,dc=oshiire,dc=to" write
+  by anonymous auth
+  by * none
