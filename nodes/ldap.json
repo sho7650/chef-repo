@@ -1,0 +1,7 @@
+{
+    "run_list":[
+	"recipe[base]",
+	"recipe[ldap::server]",
+	"recipe[ldap]"
+    ]
+}
