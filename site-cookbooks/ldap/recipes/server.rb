@@ -46,7 +46,7 @@ end
 
 %w{initOU}.each do |file|
   execute "ldapadd-#{file}" do
-    command "ldapadd -f #{Chef::Config[:file_cache_path]}/#{file}.ldif -x -D cn=admin,dc=oshiire,dc=to -w p@ssw0rd"
+    command "ldapadd -f #{Chef::Config[:file_cache_path]}/#{file}.ldif -x -D #{node[:ldap][:rootdn]} -w #{node[:ldap][:rootpw]}"
     action :nothing
   end
 

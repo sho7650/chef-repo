@@ -10,6 +10,9 @@ add: olcDbIndex
 olcDbIndex: uid pres,sub,eq
 -
 add: olcDbIndex
+olcDbIndex: memberUid pres,eq
+-
+add: olcDbIndex
 olcDbIndex: displayName pres,sub,eq
 -
 add: olcDbIndex
@@ -20,6 +23,9 @@ olcDbIndex: uidNumber eq
 -
 add: olcDbIndex
 olcDbIndex: gidNumber eq
+-
+add: olcDbIndex
+olcDbIndex: uniqueMember eq
 -
 add: olcDbIndex
 olcDbIndex: mail,givenName eq,subinitial
