@@ -28,6 +28,9 @@ execute "mysql_install_db" do
   action  :run
 end
 
+data_bag = Chef::EncryptedDataBagItem.load('mysql','mysql')
+mysql_password = data_bag['password']
+
 node.override['mysql']['innodb_buffer_pool_size'] = ((node['memory']['total'][0..-3].to_i / 1024).to_f * 0.8).to_i.to_s + "MB"
 node.override['mysql']['innodb_log_file_size']    = ((node['mysql']['innodb_log_files_in_group'].to_i * 256).to_f * 0.5).to_i.to_s + "MB"
 
@@ -56,7 +59,8 @@ template "debian.cnf" do
   group "root"
   mode  0600
   variables ({
-               :sys_maint_password => node[:mysql][:sys_maint_password]
+#               :sys_maint_password => node[:mysql][:sys_maint_password]
+               :sys_maint_password => mysql_password
              })
   notifies :restart, 'service[mysql]'
 end 
@@ -73,7 +77,8 @@ template "my_chpasswd.sql" do
   group "mysql"
   mode  0600
   variables ({
-    :sys_maint_password => node[:mysql][:sys_maint_password]
+#    :sys_maint_password => node[:mysql][:sys_maint_password]
+    :sys_maint_password => mysql_password
  })
 
   notifies :run, 'execute[mysql-chpasswd]'

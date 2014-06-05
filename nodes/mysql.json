@@ -2,6 +2,7 @@
     "run_list":[
 	"recipe[base]",
 	"recipe[iscsi]",
+	"recipe[ldap]",
 	"recipe[mysql::server]",
 	"recipe[zabbix]"
     ]
