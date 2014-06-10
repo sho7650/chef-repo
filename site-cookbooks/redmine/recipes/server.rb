@@ -8,6 +8,12 @@ template "wheezy-backport.list" do
   notifies :run, 'execute[apt-get-update]', :immediately
 end
 
+%w{git}.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
 %w{redmine redmine-mysql}.each do |pkg|
   package pkg do
     action  :install
@@ -32,7 +38,24 @@ link "/var/www/redmine" do
   owner "www-data"
   group "www-data"
   to    "/usr/share/redmine/public"
+  notifies :restart, 'service[apache2]'
 end
+
+template "passenger.conf" do
+  path "/etc/apache2/mods-available/passenger.conf"
+  owner "root"
+  group "root"
+  mode  0644
+  notifies :restart, 'service[apache2]'
+end  
+
+template "configuration.yml" do
+  path "/etc/redmine/default/configuration.yml"
+  owner "root"
+  group "www-data"
+  mode  0640
+  notifies :restart, 'service[apache2]'
+end  
 
 execute "a2ensite-redmine" do
   command "a2ensite redmine"
