@@ -4,6 +4,7 @@
 	"recipe[iscsi]",
 	"recipe[ldap]",
 	"recipe[mysql::server]",
+	"recipe[redmine::mysql]",
 	"recipe[zabbix]"
     ]
 }

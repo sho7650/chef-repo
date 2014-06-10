@@ -1,0 +1,9 @@
+{
+  "id": "redmine",
+  "password": {
+    "encrypted_data": "z1S25D5UIcq9igsjR5h8MiIfM/7ZHoij/CPOr0e7HwE=\n",
+    "iv": "FqEHlZmq6VEZIeJ1/66xhg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

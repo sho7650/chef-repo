@@ -1,0 +1,29 @@
+redmine redmine/instances/qpstudy/db/app-user   string  qpstudy
+redmine redmine/instances/qpstudy/install-error select  retry
+redmine redmine/instances/qpstudy/db/basepath   string
+redmine redmine/instances/default/default-language      select  en
+redmine redmine/instances/qpstudy/upgrade-backup        boolean true
+redmine redmine/instances/qpstudy/dbconfig-install      boolean true
+redmine redmine/notify-migration        note
+redmine redmine/instances/qpstudy/database-type select  mysql
+redmine redmine/old-instances   string
+redmine redmine/current-instances       string  qpstudy
+redmine redmine/instances/qpstudy/upgrade-error select  abort
+redmine redmine/default-language        select  ${defaultLocale}
+redmine redmine/instances/qpstudy/remote/newhost        string  172.31.1.181
+redmine redmine/instances/qpstudy/default-language      select  ja
+redmine redmine/instances/qpstudy/remote/host   select  172.31.1.181
+redmine redmine/instances/qpstudy/db/dbname     string  qpstudy
+redmine redmine/instances/qpstudy/remote/port   string  3306
+redmine redmine/instances/qpstudy/dbconfig-reinstall    boolean false
+redmine redmine/instances/qpstudy/missing-db-package-error      select  abort
+redmine redmine/missing-redmine-package error
+redmine redmine/instances/qpstudy/remove-error  select  abort
+redmine redmine/instances/qpstudy/passwords-do-not-match        error
+redmine redmine/instances/qpstudy/internal/skip-preseed boolean false
+redmine redmine/instances/qpstudy/mysql/admin-user      string  root
+redmine redmine/instances/qpstudy/purge boolean false
+redmine redmine/instances/qpstudy/mysql/method  select  tcp/ip
+redmine redmine/instances/qpstudy/dbconfig-upgrade      boolean true
+redmine redmine/instances/qpstudy/dbconfig-remove       boolean
+redmine redmine/instances/qpstudy/internal/reconfiguring        boolean false

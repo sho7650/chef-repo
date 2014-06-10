@@ -28,7 +28,7 @@ execute "mysql_install_db" do
   action  :run
 end
 
-data_bag = Chef::EncryptedDataBagItem.load('mysql','mysql')
+data_bag = Chef::EncryptedDataBagItem.load('password','mysql')
 mysql_password = data_bag['password']
 
 node.override['mysql']['innodb_buffer_pool_size'] = ((node['memory']['total'][0..-3].to_i / 1024).to_f * 0.8).to_i.to_s + "MB"

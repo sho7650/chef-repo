@@ -1,0 +1,5 @@
+CREATE DATABASE <%= @database_name %> CHARACTER SET utf8;
+CREATE USER '<%= @database_user %>'@'<%= @database_from %>' IDENTIFIED BY '<%= @database_password %>';
+GRANT ALL PRIVILEGES ON <%= @database_user %>.* TO '<%= @database_user %>'@'<%= @database_from %>';
+CREATE USER root@'<%= @database_from %>';
+FLUSH PRIVILEGES;
