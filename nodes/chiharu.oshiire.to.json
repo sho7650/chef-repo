@@ -1,0 +1,17 @@
+{
+    "environment": "development",
+
+    "lvm": {
+	"lv_name" : "lv_shr01"
+    },
+
+    "run_list": [
+	"recipe[base]",
+	"recipe[ldap::client]",
+	"recipe[samba::server]"
+    ],
+
+    "automatic": {
+	"ipaddress": "chiharu.oshiire.to"
+    }
+}

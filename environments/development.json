@@ -1,0 +1,13 @@
+{
+  "name": "development",
+  "description":"developer for OSHIIRE",
+  "chef_type": "environment",
+  "json_class": "Chef::Environment",
+  "default_attributes": {
+    "samba": {
+	"interfaces": "172.31.254.0/24",
+	"workgroup":  "OSHIIRE"
+    }
+  },
+  "override_attributes": {}
+}

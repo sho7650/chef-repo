@@ -1,0 +1,40 @@
+[global]
+	dos charset = CP932
+	workgroup = <%= node[:samba][:workgroup] %>
+	netbios name = <%= node[:samba][:hostname] %>
+	server string = <%= node[:samba][:workgroup] %>
+	interfaces = <%= node[:samba][:interfaces] %>
+	map to guest = Bad User
+	obey pam restrictions = Yes
+	pam password change = Yes
+	passwd program = /usr/bin/passwd %u
+	passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+	unix password sync = Yes
+	log level = 3
+	syslog = 0
+	log file = /var/log/samba/log.%m
+	max log size = 1000
+	max protocol = SMB2
+	dns proxy = No
+	wins support = Yes
+	usershare allow guests = Yes
+	panic action = /usr/share/samba/panic-action %d
+	idmap config * : range = 
+	idmap config * : backend = tdb
+
+[homes]
+	comment = home
+	valid users = %S
+	read only = No
+	create mask = 0600
+	directory mask = 0700
+	browseable = No
+
+[internal]
+	comment = Sharing Files for Internal Use Only
+	path = /mnt/internal
+	valid users = @internal
+	force group = internal
+	read only = No
+	create mask = 0660
+	directory mask = 0770

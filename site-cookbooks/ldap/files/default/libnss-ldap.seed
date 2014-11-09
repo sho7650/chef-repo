@@ -6,7 +6,7 @@ libnss-ldap:amd64       shared/ldapns/base-dn	string	dc=oshiire,dc=to
 libnss-ldap:amd64       libnss-ldap/rootbinddn	string	cn=admin,dc=oshiire,dc=to
 libnss-ldap:amd64       shared/ldapns/ldap_version	select	3
 libnss-ldap:amd64       libnss-ldap/binddn	string	cn=proxy,dc=oshiire,dc=to
-libnss-ldap:amd64       shared/ldapns/ldap-server	string	ldap://172.31.254.161/
+libnss-ldap:amd64       shared/ldapns/ldap-server	string	ldap://172.16.254.121/
 libnss-ldap:amd64       libnss-ldap/nsswitch	note
 libnss-ldap:amd64       libnss-ldap/confperm	boolean	true
 libnss-ldap:amd64       libnss-ldap/dbrootlogin	boolean	false

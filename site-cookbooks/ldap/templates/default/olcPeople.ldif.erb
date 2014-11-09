@@ -1,0 +1,35 @@
+dn: uid=ldapuser,ou=People,dc=oshiire,dc=to
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: ldapuser
+userPassword: {MD5}ifOaPkWsMp0X03YzRybNOg==
+uidNumber: 10000
+gidNumber: 10000
+loginShell:/bin/bash
+homeDirectory: /home/ldapuser
+cn: OpenLdap Div
+
+dn: cn=ldapgroup,ou=Group,dc=oshiire,dc=to
+objectclass: posixGroup
+cn: ldapgroup
+gidNumber: 10000
+memberUid: ldapuser
+
+dn: uid=sho,ou=People,dc=oshiire,dc=to
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: sho
+userPassword: {MD5}ByvXAKMqTFywvrvZvPhFGg==
+uidNumber: 10001
+gidNumber: 10001
+loginShell:/bin/bash
+homeDirectory: /home/sho
+cn: OpenLdap Div
+
+dn: cn=sho,ou=Group,dc=oshiire,dc=to
+objectclass: posixGroup
+cn: sho
+gidNumber: 10001
+memberUid: sho
