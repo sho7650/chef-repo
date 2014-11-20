@@ -9,18 +9,23 @@
 	pam password change = Yes
 	passwd program = /usr/bin/passwd %u
 	passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
-	unix password sync = Yes
-	log level = 3
+	log level = <%= node[:samba][:loglevel] %>
 	syslog = 0
+	socket options = TCP_NODELAY IPTOS_LOWDELAY
 	log file = /var/log/samba/log.%m
-	max log size = 1000
+	max log size = 10000
 	max protocol = SMB2
+	load printers = No
 	dns proxy = No
 	wins support = Yes
 	usershare allow guests = Yes
 	panic action = /usr/share/samba/panic-action %d
 	idmap config * : range = 
 	idmap config * : backend = tdb
+	printing = bsd
+	print command = lpr -r -P'%p' %s
+	lpq command = lpq -P'%p'
+	lprm command = lprm -P'%p' %j
 
 [homes]
 	comment = home

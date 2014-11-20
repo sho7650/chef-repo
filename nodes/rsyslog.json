@@ -1,1 +1,8 @@
-{"run_list":[]}
+{
+    "environment": "development",
+    
+    "run_list": [
+	"recipe[base]",
+	"recipe[rsyslog::server]"
+    ]
+}

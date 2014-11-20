@@ -6,3 +6,12 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+package "rsyslog" do
+  action :install
+end
+
+service "rsyslog" do
+  action [ :enable, :start ]
+  supports :status => true, :restart => true
+end
+

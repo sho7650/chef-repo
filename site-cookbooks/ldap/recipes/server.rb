@@ -44,7 +44,7 @@ end
   end
 end
 
-%w{initOU olcPeople olcGroup}.each do |file|
+%w{initOU}.each do |file|
   execute "ldapadd-#{file}" do
     command "ldapadd -f #{Chef::Config[:file_cache_path]}/#{file}.ldif -x -D #{node[:ldap][:rootdn]} -w #{node[:ldap][:rootpw]}"
     action :nothing

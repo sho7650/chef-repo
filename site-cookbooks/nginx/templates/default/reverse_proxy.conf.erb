@@ -4,6 +4,8 @@ server {
  	listen <%= proxy["listen_port"] %>;
 	server_name <%= proxy["server_name"] %>;
 
+	proxy_read_timeout 300s;
+
 	location / {
 		proxy_pass <%= proxy["proxy_url"] %>;
 	}

@@ -4,10 +4,17 @@
   "chef_type": "environment",
   "json_class": "Chef::Environment",
   "default_attributes": {
-    "samba": {
-	"interfaces": "172.31.254.0/24",
-	"workgroup":  "OSHIIRE"
-    }
+      "samba": {
+	  "interfaces": "172.31.254.0/24",
+	  "loglevel":   "2",
+	  "workgroup":  "OSHIIRE",
+	  "hostname":   "TEST"
+      },
+      "rsyslog": {
+	  "server": "172.31.254.171",
+	  "allows": "172.31.254.0/24"
+
+      }
   },
   "override_attributes": {}
 }

@@ -3,6 +3,7 @@
 	"recipe[base]",
 	"recipe[ldap::server]",
 	"recipe[ldap]",
+	"recipe[ldap::user]",
 	"recipe[ldap::samba]"
     ]
 }
