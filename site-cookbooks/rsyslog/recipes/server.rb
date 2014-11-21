@@ -23,3 +23,19 @@ template "collection.conf" do
   mode  0640
   notifies :restart, 'service[rsyslog]'
 end
+
+template "logentries.conf" do
+  path  "/etc/rsyslog.d/logentries.conf"
+  owner "root"
+  group "root"
+  mode  0640
+  notifies :restart, 'service[rsyslog]'
+end
+
+template "archive.sh" do
+  path  "/etc/cron.#{node[:rsyslog][:archivecycle]}/archive.sh"
+  owner "root"
+  group "root"
+  mode  0750
+end
+

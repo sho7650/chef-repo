@@ -9,10 +9,16 @@
 	  "loglevel":   "0",
 	  "workgroup":  "OSHIIRE",
 	  "hostname":   "CHIHARU"
-      }
+      },
       "rsyslog": {
 	  "server": "172.16.254.131",
-	  "allows": "172.16.254.0/24"
+	  "allows": "172.16.254.0/24",
+	  "token":  "b891a74a-e528-42e1-a515-7e3f6c5388df"
+
+      },
+      "s3cmd": {
+	  "proxy_host": "172.15.254.254",
+	  "proxy_port": "8080"
       }
 
   },

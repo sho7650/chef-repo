@@ -1,0 +1,2 @@
+$template Logentries,"<%= node[:rsyslog][:token] %> %HOSTNAME% %syslogtag%%msg%\n"
+*.* @@api.logentries.com:10000;Logentries

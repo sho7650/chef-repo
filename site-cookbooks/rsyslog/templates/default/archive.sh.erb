@@ -1,0 +1,13 @@
+#!/bin/bash
+
+archive=<%= node[:rsyslog][:archiveterm] %>
+remove=<%= node[:rsyslog][:removeterm] %>
+
+today=`date '+%Y%m%d'`
+host=`hostname`
+
+find /var/log/archive/ -type f -mtime +$archive | tar -cvz -T - --null -f /var/log/archive/${host}_${today}.tar.gz
+
+find /var/log/archive/ -type f -mtime +$remove -print0 | xargs -0 rm -f
+
+s3cmd -e --rr put /var/log/archive/${host}_${today}.tar.gz s3://oshiire-archives/logs/
