@@ -1,0 +1,11 @@
+{
+  "id": "internal",
+
+  "groups": [
+    {
+      "name":   "internal",
+      "gid":    "11001",
+      "member": "ryoko"
+    }
+  ]
+}

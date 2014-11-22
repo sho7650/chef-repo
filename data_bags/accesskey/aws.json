@@ -1,0 +1,21 @@
+{
+  "id": "aws",
+  "accesskey": {
+    "encrypted_data": "ix4etbZ84bJ1JvWsc3NqhQL7xSbayxp7l7AsJal0NPxvE1tiKkvVAAohqjeW\noKVC\n",
+    "iv": "c8H82Tvp3RUhgoeuhLTqHA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "secretkey": {
+    "encrypted_data": "9m/gAEyrLRpNuINhrLSh0Hh1xqJ97Szf0rbQj/1trlAEeBYny6vi61Zwkcli\nP0yS/MSQl41wllXgJsBVEN2etg==\n",
+    "iv": "5LzthWXXUsX2nG6WQgWeDg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "gpgpassphrase": {
+    "encrypted_data": "Vu22OwsR3KKdOBS0K545Q4h1lsApRwKo5XFPBzKmw98=\n",
+    "iv": "GJxtmSzU+1uNfBA2Mm1TTA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

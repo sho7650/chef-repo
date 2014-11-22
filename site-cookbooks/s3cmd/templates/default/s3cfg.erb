@@ -1,5 +1,5 @@
 [default]
-access_key = AKIAIM6ZVSDGAXGI7RKQ
+access_key = <%= @access_key %>
 bucket_location = US
 cloudfront_host = cloudfront.amazonaws.com
 default_mime_type = binary/octet-stream
@@ -14,7 +14,7 @@ get_continue = False
 gpg_command = /usr/bin/gpg
 gpg_decrypt = %(gpg_command)s -d --verbose --no-use-agent --batch --yes --passphrase-fd %(passphrase_fd)s -o %(output_file)s %(input_file)s
 gpg_encrypt = %(gpg_command)s -c --verbose --no-use-agent --batch --yes --passphrase-fd %(passphrase_fd)s -o %(output_file)s %(input_file)s
-gpg_passphrase = ryoko18
+gpg_passphrase = <%= @gpg_passphrase %>
 guess_mime_type = True
 host_base = s3.amazonaws.com
 host_bucket = %(bucket)s.s3.amazonaws.com
@@ -31,7 +31,7 @@ proxy_port = <%= node[:s3cmd][:proxy_port] %>
 recursive = False
 recv_chunk = 4096
 reduced_redundancy = False
-secret_key = r6sjT/Pt7MrRJ838N3mzlagm+71QGnVQf8rvsAU4
+secret_key = <%= @secret_key %>
 send_chunk = 4096
 simpledb_host = sdb.amazonaws.com
 skip_existing = False
