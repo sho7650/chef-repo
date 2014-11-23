@@ -3,6 +3,7 @@
     
     "run_list":[
 	"recipe[base]",
+	"recipe[rsyslog::client]",
 	"recipe[ldap::server]",
 	"recipe[ldap]",
 	"recipe[ldap::user]",

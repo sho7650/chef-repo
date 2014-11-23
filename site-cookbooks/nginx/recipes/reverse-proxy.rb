@@ -18,3 +18,16 @@ template "reverse_proxy.conf" do
              })
   notifies :reload, 'service[nginx]'
 end
+
+ssl_servers = data_bag_item('proxylist','ssl')['servers']
+
+template "reverse_proxy_ssl.conf" do
+  path "/etc/nginx/conf.d/reverse_proxy_ssl.conf"
+  owner "root"
+  group "root"
+  mode  0644
+  variables ({
+               :sslproxy_list => ssl_servers
+             })
+  notifies :reload, 'service[nginx]'
+end

@@ -1,0 +1,10 @@
+{
+    "id" : "ssl",
+    "servers":[
+	{
+	    "listen_port" : "192.168.0.122:443",
+	    "server_name" : "proxmox02.oshiire.to",
+	    "proxy_url"   : "https://172.16.254.232:8006/"
+	}
+    ]
+}
