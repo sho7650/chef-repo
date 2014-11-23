@@ -3,6 +3,7 @@
     
     "run_list": [
 	"recipe[base]",
+	"recipe[ldap]",
 	"recipe[s3cmd]",
 	"recipe[rsyslog::server]"
     ]

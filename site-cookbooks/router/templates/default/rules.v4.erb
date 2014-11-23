@@ -17,6 +17,7 @@ COMMIT
 
 # Allows HTTP connections from anywhere (the normal ports for websites)
 -A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 8080 -j ACCEPT
 
 # Allows ntp/udp connections from management network
 -A INPUT -p udp -s 172.16.254.0/24 --dport 123 -j ACCEPT
