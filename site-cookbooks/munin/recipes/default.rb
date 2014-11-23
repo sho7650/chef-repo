@@ -15,3 +15,10 @@ service "munin-node" do
   supports :status => true, :restart => true
 end
 
+template "munin-node.conf" do
+  path  "/etc/munin/munin-node.conf"
+  owner "root"
+  group "root"
+  mode  0644
+  notifies :restart, 'service[munin-node]'
+end
