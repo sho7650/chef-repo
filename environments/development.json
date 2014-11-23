@@ -1,21 +1,24 @@
 {
-  "name": "development",
-  "description":"developer for OSHIIRE",
-  "chef_type": "environment",
-  "json_class": "Chef::Environment",
-  "default_attributes": {
-      "samba": {
-	  "interfaces": "172.31.254.0/24",
-	  "loglevel":   "2",
-	  "workgroup":  "OSHIIRE",
-	  "hostname":   "TEST"
-      },
-      "rsyslog": {
-	  "server": "172.31.254.171",
-	  "allows": "172.31.254.0/24",
-	  "token":  "b7399169-1f29-4771-8611-dd7ff491df95"
-      }
-
-  },
-  "override_attributes": {}
+    "name": "development",
+    "description":"developer for OSHIIRE",
+    "chef_type": "environment",
+    "json_class": "Chef::Environment",
+    "default_attributes": {
+	"ldap": {
+	    "server": "172.31.254.161"
+	},
+	"samba": {
+	    "interfaces": "172.31.254.0/24",
+	    "loglevel":   "2",
+	    "workgroup":  "OSHIIRE",
+	    "hostname":   "TEST"
+	},
+	"rsyslog": {
+	    "server": "172.31.254.171",
+	    "allows": "172.31.254.0/24",
+	    "token":  "b7399169-1f29-4771-8611-dd7ff491df95"
+	}
+	
+    },
+    "override_attributes": {}
 }

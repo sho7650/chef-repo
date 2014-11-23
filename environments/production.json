@@ -4,6 +4,9 @@
   "chef_type": "environment",
   "json_class": "Chef::Environment",
   "default_attributes": {
+      "ldap": {
+	  "server":     "172.16.254.121"
+      },
       "samba": {
 	  "interfaces": "192.168.0.0/24",
 	  "loglevel":   "0",

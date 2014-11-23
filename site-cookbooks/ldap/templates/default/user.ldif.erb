@@ -1,0 +1,17 @@
+dn: uid=<%= @u['uid'] %>,ou=People,dc=oshiire,dc=to
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: <%= @u['uid'] %>
+userPassword: <%= @u['userPassword'] %>
+uidNumber: <%= @u['uidNumber'] %>
+gidNumber: <%= @u['gidNumber'] %>
+loginShell: <%= @u['loginshell'] %>
+homeDirectory: <%= @u['homedirectory'] %>
+cn: OpenLdap Div
+
+dn: cn=<%= @u['uid'] %>,ou=Group,dc=oshiire,dc=to
+objectclass: posixGroup
+cn: <%= @u['uid'] %>
+gidNumber: <%= @u['gidNumber'] %>
+memberUid: <%= @u['uid'] %>

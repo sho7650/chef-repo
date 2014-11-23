@@ -1,0 +1,9 @@
+{
+    "id": "sho",
+    "uid":          "sho",
+    "userPassword": "{MD5}ByvXAKMqTFywvrvZvPhFGg==",
+    "uidNumber":    "10001",
+    "gidNumber":    "10001",
+    "loginshell":   "/bin/bash",
+    "homeDirectory": "/home/sho"
+}

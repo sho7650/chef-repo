@@ -1,4 +1,6 @@
 {
+    "environment": "development",
+    
     "run_list":[
 	"recipe[base]",
 	"recipe[ldap::server]",

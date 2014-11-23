@@ -9,8 +9,21 @@
 %w{libpam-ldap libnss-ldap}.each do |pkg|
   package pkg do
     action :install
-    response_file "#{pkg}.seed"
   end
+end
+
+template "pam_ldap.conf" do
+  path "/etc/pam_ldap.conf"
+  owner "root"
+  group "root"
+  mode  0644
+end
+
+template "libnss-ldap.conf" do
+  path "/etc/libnss-ldap.conf"
+  owner "root"
+  group "root"
+  mode  0600
 end
 
 template "nsswitch.conf" do

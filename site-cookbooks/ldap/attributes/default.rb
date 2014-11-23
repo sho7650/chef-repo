@@ -5,6 +5,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+default['ldap']['base']   = "dc=oshiire,dc=to"
 default['ldap']['rootdn'] = "cn=admin,dc=oshiire,dc=to"
 default['ldap']['rootpw'] = "p@ssw0rd"
 
