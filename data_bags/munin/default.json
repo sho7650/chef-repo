@@ -1,0 +1,9 @@
+{
+	"id": "default",
+	"nodes": [
+		 {
+			"keyword": "manage;azumi",
+			"address": "172.16.254.102"
+		}
+	]
+}

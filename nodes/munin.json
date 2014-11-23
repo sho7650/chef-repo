@@ -1,0 +1,11 @@
+{
+    "environment": "development",
+    
+    "run_list": [
+	"recipe[base]",
+	"recipe[ldap]",
+	"recipe[rsyslog::client]",
+	"recipe[nginx]",
+	"recipe[munin::server]"
+    ]
+}

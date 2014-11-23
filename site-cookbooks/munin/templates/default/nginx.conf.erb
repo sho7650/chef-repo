@@ -1,0 +1,11 @@
+    server {
+
+        location /munin {
+            alias /var/cache/munin/www;
+            index index.html index.htm index;
+            allow 127.0.0.1;
+            allow 172.31.254.0/24;
+            deny  all;
+        }
+
+    }
