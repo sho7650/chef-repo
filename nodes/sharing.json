@@ -9,7 +9,8 @@
 	"recipe[base]",
 	"recipe[rsyslog::client]",
 	"recipe[ldap::client]",
-	"recipe[samba::server]"
+	"recipe[samba::server]",
+	"recipe[munin]"
     ],
 
     "automatic": {

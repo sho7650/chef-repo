@@ -1,0 +1,18 @@
+{
+    "id": "development",
+    "nodes": [
+	{
+	    "keyword": "manage;azumi",
+	    "address": "127.0.0.1"
+	},
+	{
+	    "keyword": "manage;rsyslog",
+	    "address": "172.31.254.171"
+	},
+	{
+	    "keyword": "manage;ldap",
+	    "address": "172.31.254.161"
+	}
+
+    ]
+}

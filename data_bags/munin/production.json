@@ -1,0 +1,29 @@
+{
+    "id": "production",
+    "nodes": [
+	{
+	    "keyword": "manage;azumi",
+	    "address": "localhost"
+	},
+	{
+	    "keyword": "oshiire;chiharu",
+	    "address": "172.16.254.21"
+	},
+	{
+	    "keyword": "manage;natsuko",
+	    "address": "172.16.254.121"
+	},
+	{
+	    "keyword": "manage;yui",
+	    "address": "172.16.254.131"
+	},
+	{
+	    "keyword": "manage;izumi",
+	    "address": "172.16.254.254"
+	},
+	{
+	    "keyword": "manage;kozue",
+	    "address": "172.16.254.29"
+	}
+    ]
+}

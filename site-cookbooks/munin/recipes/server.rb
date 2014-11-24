@@ -17,7 +17,7 @@ service "munin" do
   supports :status => true, :restart => true
 end
 
-item = data_bag_item('munin','default')
+item = data_bag_item('munin',node.chef_environment)
 
 template "munin.conf" do
   path  "/etc/munin/munin.conf"

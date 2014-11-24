@@ -5,6 +5,7 @@
 	"recipe[nginx]",
 	"recipe[rsyslog::client]",
 	"recipe[nginx::forward-proxy]",
-	"recipe[nginx::reverse-proxy]"
+	"recipe[nginx::reverse-proxy]",
+	"recipe[munin"
     ]
 }
