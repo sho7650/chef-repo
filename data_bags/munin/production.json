@@ -2,7 +2,7 @@
     "id": "production",
     "nodes": [
 	{
-	    "keyword": "manage;azumi",
+	    "keyword": "manage;mako",
 	    "address": "localhost"
 	},
 	{

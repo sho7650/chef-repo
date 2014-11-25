@@ -51,7 +51,7 @@ bindpw <%= node[:ldap][:bindpw] %>
 # Use 'echo -n "mypassword" > /etc/libnss-ldap.secret' instead
 # of an editor to create the file.
 #rootbinddn cn=manager,dc=padl,dc=com
-rootbinddn <%= node[:ldap][:rooddn] %>
+rootbinddn <%= node[:ldap][:rootdn] %>
 
 # The port.
 # Optional: default is 389.
