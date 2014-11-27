@@ -1,3 +1,4 @@
+/data_bag_key
 /cookbooks/
 *~
-.*
+.DS_Store
