@@ -10,6 +10,7 @@
 	"recipe[rsyslog::client]",
 	"recipe[ldap::client]",
 	"recipe[samba::server]",
+	"recipe[git]",
 	"recipe[munin]"
     ],
 
