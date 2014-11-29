@@ -1,12 +1,32 @@
     server {
 
-        location /munin {
-            alias /var/cache/munin/www;
-            index index.html index.htm index;
-            allow 127.0.0.1;
-            allow 172.31.254.0/24;
-	    allow 172.16.254.0/24;
-            deny  all;
+        location ^~ /munin/cgi-graph/ {
+            access_log off;
+            fastcgi_split_path_info ^(/munin/cgi-graph)(.*);
+            fastcgi_param PATH_INFO $fastcgi_path_info;
+            fastcgi_pass unix:/var/run/munin/fcgi-graph.sock;
+            include fastcgi_params;
         }
+
+        location /munin/static/ {
+            alias /etc/munin/static/;
+        }
+
+
+        location /munin/ {
+            fastcgi_split_path_info ^(/munin)(.*);
+            fastcgi_param PATH_INFO $fastcgi_path_info;
+            fastcgi_pass unix:/var/run/munin/fcgi-html.sock;
+            include fastcgi_params;
+        }
+
+#	location /munin {
+#            alias /var/cache/munin/www;
+#            index index.html index.htm index;
+#            allow 127.0.0.1;
+#            allow 172.31.254.0/24;
+#            allow 172.16.254.0/24;
+#            deny  all;
+#        }
 
     }

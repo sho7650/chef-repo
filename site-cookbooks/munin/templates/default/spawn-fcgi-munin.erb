@@ -1,0 +1,154 @@
+#! /bin/sh
+#
+# init script of spawn-fcgi for munin.
+#
+### BEGIN INIT INFO
+# Provides:          spawn-fcgi-munin
+# Required-Start:    $remote_fs $syslog nginx
+# Required-Stop:     $remote_fs $syslog 
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: spawn-fcgi for munin.
+### END INIT INFO
+
+# Do NOT "set -e"
+
+# PATH should only include /usr/* if it runs after the mountnfs.sh script
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+DESC="spawn-fcgi for munin"
+NAME=spawn-fcgi-munin
+GRAPH_PIDFILE=/var/run/munin/fcgi-graph.pid
+GRAPH_SOCKFILE=/var/run/munin/fcgi-graph.sock
+GRAPH_CGIFILE=/usr/lib/munin/cgi/munin-cgi-graph
+HTML_PIDFILE=/var/run/munin/fcgi-html.pid
+HTML_SOCKFILE=/var/run/munin/fcgi-html.sock
+HTML_CGIFILE=/usr/lib/munin/cgi/munin-cgi-html
+DAEMON=/usr/bin/spawn-fcgi
+DAEMON_ARGS="-U www-data -u munin -g munin"
+SCRIPTNAME=/etc/init.d/$NAME
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+
+# Read configuration variable file if it is present
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+# Define LSB log_* functions.
+# Depend on lsb-base (>= 3.2-14) to ensure that this file is present
+# and status_of_proc is working.
+. /lib/lsb/init-functions
+
+#
+# Function that starts the daemon/service
+#
+do_start()
+{
+        local pidfile sockfile cgifile
+        pidfile=$1
+        sockfile=$2
+        cgifile=$3
+
+        # Return
+        #   0 if daemon has been started
+        #   1 if daemon was already running
+        #   2 if daemon could not be started
+        start-stop-daemon --start --quiet --pidfile $pidfile --exec $DAEMON --test > /dev/null \
+                || return 1
+        start-stop-daemon --start --quiet --pidfile $pidfile --exec $DAEMON -- \
+                $DAEMON_ARGS -s $sockfile -P $pidfile $cgifile > /dev/null \
+                || return 2
+}
+
+#
+# Function that stops the daemon/service
+#
+do_stop()
+{
+    local pidfile
+    pidfile=$1
+
+        # Return
+        #   0 if daemon has been stopped
+        #   1 if daemon was already stopped
+        #   2 if daemon could not be stopped
+        #   other if a failure occurred
+        start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $pidfile
+        RETVAL="$?"
+        [ "$RETVAL" = 2 ] && return 2
+        # Many daemons don't delete their pidfiles when they exit.
+        rm -f $pidfile
+        return "$RETVAL"
+}
+
+case "$1" in
+  start)
+        log_daemon_msg "Starting $DESC(graph)" "munin-cgi-graph"
+        do_start "$GRAPH_PIDFILE" "$GRAPH_SOCKFILE" "$GRAPH_CGIFILE"
+        log_end_msg $(( $? / 2 ))
+        log_daemon_msg "Starting $DESC(html)" "munin-cgi-html"
+        do_start "$HTML_PIDFILE" "$HTML_SOCKFILE" "$HTML_CGIFILE"
+        log_end_msg $(( $? / 2 ))
+        ;;
+  stop)
+        log_daemon_msg "Stopping $DESC(graph)" "munin-cgi-graph"
+        do_stop "$GRAPH_PIDFILE" "$GRAPH_SOCKFILE"
+        log_end_msg $(( $? / 2 ))
+        log_daemon_msg "Stopping $DESC(html)" "munin-cgi-html"
+        do_stop "$HTML_PIDFILE" "$HTML_SOCKFILE"
+        log_end_msg $(( $? / 2 ))
+        ;;
+  status)
+        status_of_proc -p "$GRAPH_PIDFILE" "$DAEMON" "munin-cgi-graph"
+        RETVAL=$?
+        status_of_proc -p "$HTML_PIDFILE" "$DAEMON" "munin-cgi-html"
+        if [ "$RETVAL" = 0 ] && [ "$?" = 0 ]; then
+                exit 0
+        elif [ "$RETVAL" = 2 ] || [ "$?" = 2 ]; then
+                exit 2
+        else
+                exit 1
+        fi
+        ;;
+  restart|force-reload)
+        #
+        # If the "reload" option is implemented then remove the
+        # 'force-reload' alias
+        #
+        log_daemon_msg "Restarting $DESC(graph)" "munin-cgi-graph"
+        do_stop "$GRAPH_PIDFILE"
+        case "$?" in
+          0|1)
+                do_start "$GRAPH_PIDFILE" "$GRAPH_SOCKFILE" "$GRAPH_CGIFILE"
+                case "$?" in
+                        0) log_end_msg 0 ;;
+                        1) log_end_msg 1 ;; # Old process is still running
+                        *) log_end_msg 1 ;; # Failed to start
+                esac
+                ;;
+          *)
+                log_end_msg 1  # Failed to stop
+                ;;
+        esac
+        log_daemon_msg "Restarting $DESC(html)" "munin-cgi-html"
+        do_stop "$HTML_PIDFILE"
+        case "$?" in
+          0|1)
+                do_start "$HTML_PIDFILE" "$HTML_SOCKFILE" "$HTML_CGIFILE"
+                case "$?" in
+                        0) log_end_msg 0 ;;
+                        1) log_end_msg 1 ;; # Old process is still running
+                        *) log_end_msg 1 ;; # Failed to start
+                esac
+                ;;
+          *)
+                log_end_msg 1  # Failed to stop
+                ;;
+        esac
+        ;;
+  *)
+        echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+        exit 3
+        ;;
+esac
+
+:

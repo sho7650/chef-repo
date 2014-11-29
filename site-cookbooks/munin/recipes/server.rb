@@ -8,13 +8,10 @@
 #
 include_recipe "munin"
 
-package "munin" do
-  action :install
-end
-
-service "munin" do
-  action [ :enable, :start ]
-  supports :status => true, :restart => true
+%w{munin spawn-fcgi}.each do |pkg|
+  package pkg do
+    action :install
+  end
 end
 
 item = data_bag_item('munin',node.chef_environment)
@@ -27,7 +24,6 @@ template "munin.conf" do
   variables ({
                :nodes => item['nodes']
              })
-  notifies :restart, 'service[munin]'
 end
 
 template "nginx.conf" do
@@ -36,4 +32,32 @@ template "nginx.conf" do
   group "root"
   mode  0644
   notifies :restart, 'service[nginx]'
+end
+
+execute "insserv-spawn-fcgi-munin" do
+  command "insserv spawn-fcgi-munin"
+  action :nothing
+end
+
+template "spawn-fcgi-munin" do
+  path  "/etc/init.d/spawn-fcgi-munin"
+  owner "root"
+  group "root"
+  mode  0750
+  notifies :run, 'execute[insserv-spawn-fcgi-munin]'
+end
+
+%w{munin-cgi-html.log munin-cgi-graph.log}.each do |pkg|
+  file pkg do
+    path  "/var/log/munin/#{pkg}"
+    owner "munin"
+    group "adm"
+    mode  0640
+    action :create
+  end
+end
+
+service "spawn-fcgi-munin" do
+  action [ :enable, :start ]
+  supports :status => true, :restart => true
 end
