@@ -14,4 +14,4 @@ include_recipe "base::locale"
 include_recipe "base::ntpd"
 
 # Disalbing ipv6
-include_recipe "base::ipv6"
+# include_recipe "base::ipv6"
