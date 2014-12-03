@@ -2,6 +2,7 @@
     "run_list":[
 	"recipe[base]",
 	"recipe[apt]",
+	"recipe[git]",
 	"recipe[ldap]",
 	"recipe[router::masquerade]",
 	"recipe[nginx]",

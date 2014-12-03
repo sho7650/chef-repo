@@ -1,0 +1,18 @@
+{
+    "id": "testing",
+    "nodes": [
+	{
+	    "keyword": "manage;mako.testing",
+	    "address": "127.0.0.1"
+	},
+	{
+	    "keyword": "manage;yui.testing",
+	    "address": "172.26.254.131"
+	},
+	{
+	    "keyword": "manage;natsuko.testing",
+	    "address": "172.26.254.121"
+	}
+
+    ]
+}

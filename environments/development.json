@@ -5,7 +5,7 @@
     "json_class": "Chef::Environment",
     "default_attributes": {
 	"ldap": {
-	    "server": "172.31.254.161"
+	    "server": "172.31.254.121"
 	},
 	"samba": {
 	    "interfaces": "172.31.254.0/24",

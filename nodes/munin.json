@@ -2,6 +2,7 @@
     "environment": "development",
     
     "run_list": [
+	"recipe[apt]",
 	"recipe[base]",
 	"recipe[ldap]",
 	"recipe[rsyslog::client]",

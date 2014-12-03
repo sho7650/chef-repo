@@ -1,7 +1,7 @@
 *nat
 -A POSTROUTING -s 172.16.254.0/24 -o eth0 -j MASQUERADE
--A POSTROUTING -s 172.26.254.0/24 -o eth0 -j MASQUERADE
--A POSTROUTING -s 172.31.254.0/24 -o eth0 -j MASQUERADE
+-A POSTROUTING -s 172.26.0.0/16 -o eth0 -j MASQUERADE
+-A POSTROUTING -s 172.31.0.0/16 -o eth0 -j MASQUERADE
 COMMIT
 
 *filter
@@ -26,8 +26,8 @@ COMMIT
 
 # Allows ntp/udp connections from management network
 -A INPUT -p udp -s 172.16.254.0/24 --dport 123 -j ACCEPT
--A INPUT -p udp -s 172.26.254.0/24 --dport 123 -j ACCEPT
--A INPUT -p udp -s 172.31.254.0/24 --dport 123 -j ACCEPT
+-A INPUT -p udp -s 172.26.0.0/16 --dport 123 -j ACCEPT
+-A INPUT -p udp -s 172.31.0.0/16 --dport 123 -j ACCEPT
 
 # Allows SSH connections
 # THE -dport NUMBER IS THE SAME ONE YOU SET UP IN THE SSHD_CONFIG FILE

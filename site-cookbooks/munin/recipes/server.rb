@@ -26,14 +26,6 @@ template "munin.conf" do
              })
 end
 
-template "nginx.conf" do
-  path  "/etc/nginx/conf.d/munin.conf"
-  owner "root"
-  group "root"
-  mode  0644
-  notifies :restart, 'service[nginx]'
-end
-
 execute "insserv-spawn-fcgi-munin" do
   command "insserv spawn-fcgi-munin"
   action :nothing
@@ -47,6 +39,11 @@ template "spawn-fcgi-munin" do
   notifies :run, 'execute[insserv-spawn-fcgi-munin]'
 end
 
+service "spawn-fcgi-munin" do
+  action [ :enable, :start ]
+  supports :status => true, :restart => true
+end
+
 %w{munin-cgi-html.log munin-cgi-graph.log}.each do |pkg|
   file pkg do
     path  "/var/log/munin/#{pkg}"
@@ -54,10 +51,14 @@ end
     group "adm"
     mode  0640
     action :create
+    notifies :restart, 'service[spawn-fcgi-munin]'
   end
 end
 
-service "spawn-fcgi-munin" do
-  action [ :enable, :start ]
-  supports :status => true, :restart => true
+template "nginx.conf" do
+  path  "/etc/nginx/conf.d/munin.conf"
+  owner "root"
+  group "root"
+  mode  0644
+  notifies :restart, 'service[nginx]'
 end

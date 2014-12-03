@@ -1,0 +1,27 @@
+{
+    "name": "testing",
+    "description":"testing for OSHIIRE",
+    "chef_type": "environment",
+    "json_class": "Chef::Environment",
+    "default_attributes": {
+	"ldap": {
+	    "server": "172.26.254.121"
+	},
+	"samba": {
+	    "interfaces": "172.0.0.0/8",
+	    "loglevel":   "3",
+	    "workgroup":  "OSHIIRE",
+	    "hostname":   "CHIHARU"
+	},
+	"rsyslog": {
+	    "server": "172.26.254.131",
+	    "allows": "172.0.0.0/8",
+	    "token":  "4e7df201-9bca-48e4-906c-f145188e0a0f"
+	},
+	"munin": {
+	    "server": "^172\\.26\\.254\\.102$"
+	}
+	
+    },
+    "override_attributes": {}
+}
