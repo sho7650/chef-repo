@@ -6,6 +6,10 @@
 	    "address": "127.0.0.1"
 	},
 	{
+	    "keyword": "oshiire;chiharu.testing",
+	    "address": "172.26.254.21"
+	},
+	{
 	    "keyword": "manage;yui.testing",
 	    "address": "172.26.254.131"
 	},

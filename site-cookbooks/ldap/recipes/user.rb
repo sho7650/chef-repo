@@ -13,7 +13,7 @@ accounts.each do |id|
   users = data_bag_item('users', id)
 
   execute  "add-#{users['uid']}" do
-    command "ldapadd -f #{Chef::Config[:file_cache_path]}/#{users['uid']}-user.ldif -x -D #{node[:ldap][:rootdn]} -w #{node[:ldap][:rootpw]}"
+    command "ldapadd -H ldapi:/// -f #{Chef::Config[:file_cache_path]}/#{users['uid']}-user.ldif -x -D #{node[:ldap][:rootdn]} -w #{node[:ldap][:rootpw]}"
     action :nothing
   end
 
